@@ -8,9 +8,20 @@ namespace GradeBook
     {
         // public List<double> grades;
         public List<double> grades { get; set; }
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+
         public Book()
         {
             grades = new List<double>();
+            Name = "";
         }
 
         public void AddGrade(double grade)

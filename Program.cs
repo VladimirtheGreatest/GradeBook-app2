@@ -10,7 +10,14 @@ namespace GradeBook
 
             bool execute = true;
             string userInput = "";
+            string userName = "";
             string executionCommand = "execute";
+
+            Console.WriteLine("What is your name?");
+            userName = Console.ReadLine();
+            Console.WriteLine($"Welcome {userName}");
+            book.Name = userName;
+  
 
             while (execute != false)
             {
@@ -19,7 +26,7 @@ namespace GradeBook
                 if (userInput == executionCommand)
                 {
                     execute = false;
-                    Console.WriteLine("Thank you for using Gradebook 1.0");
+                    Console.WriteLine($"Thank you for using Gradebook 1.0 {book.Name}");
                     Console.WriteLine("Here is the list of your grades");
                     book.grades.ForEach(i => Console.WriteLine("{0}\t", i));
                     Console.ReadLine();
@@ -39,6 +46,7 @@ namespace GradeBook
                         }
 
                         var stats = book.GetStatistics();
+                        Console.WriteLine($"{book.Name}`s gradebook");
                         Console.WriteLine($"The lowest grade is {stats.Low}");
                         Console.WriteLine($"The highest grade is {stats.High}");
                         Console.WriteLine($"The average grade is {stats.Average:N1}");
