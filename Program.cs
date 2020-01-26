@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GradeBook
 {
@@ -7,6 +9,7 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book();
+            List<decimal> termsList = new List<decimal>();
 
             bool execute = true;
             string userInput = "";
@@ -28,7 +31,25 @@ namespace GradeBook
                     execute = false;
                     Console.WriteLine($"Thank you for using Gradebook 1.0 {book.Name}");
                     Console.WriteLine("Here is the list of your grades");
-                    book.grades.ForEach(i => Console.WriteLine("{0}\t", i));
+                    //book.grades.OrderBy(x => x).ToList();
+
+
+                    IEnumerable<double> scoreQuery =
+                from something in book.grades
+                where something > 60 && something < 90
+                orderby something ascending
+                select something;
+
+
+                    //Execute the query.
+                    foreach (double i in scoreQuery)
+                    {
+                        Console.Write(i + " ");
+                    }
+
+                   // book.grades.ForEach(i => Console.WriteLine("{0}\t", i));
+                   // var orderedList = book.grades.OrderBy(x => x).ToList();
+                   // Console.WriteLine(orderedList);
                     Console.ReadLine();
                 }
                 else
